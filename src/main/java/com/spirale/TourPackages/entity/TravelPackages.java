@@ -1,5 +1,6 @@
 package com.spirale.TourPackages.entity;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
+import java.time.Instant;
 @Entity
 public class TravelPackages {
 
@@ -29,39 +30,8 @@ public class TravelPackages {
 	private String duration;
 	private Integer price;
 	
-	private Integer createdAt;
-	private Integer updateAt;
-	
-	 @OneToMany(cascade= CascadeType.ALL)
-	  @JoinColumn(name="packageId")
-	  Set<Booking> bookingList;
-	
-	/*
-	 * @OneToOne(mappedBy="travelPackages", cascade=CascadeType.ALL) private Booking
-	 * booking;
-	 */
-	public TravelPackages()
-	{
-		
-	}
-	public TravelPackages(Integer packageId, String packageName, String destination, String description, String duration,
-			Integer price, Integer createdAt, Integer updateAt) {
-		super();
-		this.packageId = packageId;
-		this.packageName = packageName;
-		this.destination = destination;
-		this.description = description;
-		this.duration = duration;
-		this.price = price;
-		this.createdAt = createdAt;
-		this.updateAt = updateAt;
-	}
-	@Override
-	public String toString() {
-		return "TravelPackage [packageId=" + packageId + ", packageName=" + packageName + ", destination=" + destination
-				+ ", description=" + description + ", duration=" + duration + ", price=" + price + ", createdAt="
-				+ createdAt + ", updateAt=" + updateAt + "]";
-	}
+	private Instant createdAt;
+	private Instant updateAt;
 	public Integer getPackageId() {
 		return packageId;
 	}
@@ -98,19 +68,59 @@ public class TravelPackages {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public Integer getCreatedAt() {
+	public Instant getCreatedAt() {
 		return createdAt;
 	}
-	public void setCreatedAt(Integer createdAt) {
+	public void setCreatedAt(Instant createdAt) {
 		this.createdAt = createdAt;
 	}
-	public Integer getUpdateAt() {
+	public Instant getUpdateAt() {
 		return updateAt;
 	}
-	public void setUpdateAt(Integer updateAt) {
+	public void setUpdateAt(Instant updateAt) {
+		this.updateAt = updateAt;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(createdAt, description, destination, duration, packageId, packageName, price, updateAt);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TravelPackages other = (TravelPackages) obj;
+		return Objects.equals(createdAt, other.createdAt) && Objects.equals(description, other.description)
+				&& Objects.equals(destination, other.destination) && Objects.equals(duration, other.duration)
+				&& Objects.equals(packageId, other.packageId) && Objects.equals(packageName, other.packageName)
+				&& Objects.equals(price, other.price) && Objects.equals(updateAt, other.updateAt);
+	}
+	
+	public TravelPackages() {
+		// TODO Auto-generated constructor stub
+	}
+	public TravelPackages(Integer packageId, String packageName, String destination, String description,
+			String duration, Integer price, Instant createdAt, Instant updateAt) {
+		super();
+		this.packageId = packageId;
+		this.packageName = packageName;
+		this.destination = destination;
+		this.description = description;
+		this.duration = duration;
+		this.price = price;
+		this.createdAt = createdAt;
 		this.updateAt = updateAt;
 	}
 	
+	/*
+	 * @OneToMany( targetEntity = Booking.class, cascade= CascadeType.ALL)
+	 * 
+	 * @JoinColumn(name="packageId") Set<Booking> bookingList;
+	 */
 	
+  
 	
 }

@@ -1,5 +1,6 @@
 package com.spirale.TourPackages.service;
 
+import java.time.Instant;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class TravelPackageService {
 	TravelPackegesRepository tavelPackageRepostory;
 	
 	public TravelPackages create(TravelPackages pack) {
+		pack.setCreatedAt(Instant.now());
+	    
 		return tavelPackageRepostory.save(pack);
 		
 	}
@@ -42,11 +45,14 @@ public class TravelPackageService {
 }
 	public ResponseObject updatepack(TravelPackages pack ) {
 		Optional<TravelPackages> packageDetails= tavelPackageRepostory.findById(pack.getPackageId());
-		if(packageDetails.isPresent() && pack.equals(packageDetails))
+		TravelPackages packages= packageDetails.get();
+		if(packageDetails.isPresent() && pack.equals(packages))
 		{
-			return new ResponseObject("Data already present",packageDetails,"ok");
+			
+			return new ResponseObject("Data already present",packageDetails,"404");
 		}
 		else {
+			pack.setUpdateAt(Instant.now());
 			TravelPackages save= tavelPackageRepostory.save(pack);
 			return new ResponseObject("Data updated",save,"200");
 		}
@@ -54,4 +60,12 @@ public class TravelPackageService {
 		
 		
 	}
+	
+	/*
+	 * public Integer getinfo() { return tavelPackageRepostory.getJoinInformation();
+	 * 
+	 * }
+	 */
+	
+	
 }

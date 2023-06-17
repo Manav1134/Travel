@@ -50,7 +50,7 @@ public Optional<Booking> getOne(@PathVariable Integer bookingId) {
 }
 
 
-@DeleteMapping("/deletePack/{bookingId}")
+@DeleteMapping("/deleteBooking/{bookingId}")
 public ResponseObject delete( @PathVariable Integer bookingId) {
 	return bookingService.deletePackage(bookingId);
 }

@@ -1,5 +1,6 @@
 package com.spirale.TourPackages.service;
 
+import java.time.Instant;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class BookingService {
 	BookingRepository bookingRepository;
 	
 	public Booking create(Booking book) {
-		
+		book.setBookingDate(Instant.now());
 			return bookingRepository.save(book);
 			
 		}
@@ -46,9 +47,10 @@ public class BookingService {
 
 		public ResponseObject updatepack(Booking book ) {
 			Optional<Booking> bookingDetails= bookingRepository.findById(book.getBookingId());
-			if(bookingDetails.isPresent() && book.equals(bookingDetails))
+			Booking booking= bookingDetails.get();
+			if(bookingDetails.isPresent() && book.equals(booking))
 			{
-				return new ResponseObject("Data already present",bookingDetails,"ok");
+				return new ResponseObject("Data already present",bookingDetails,"404");
 			}
 			else {
 				Booking save= bookingRepository.save(book);
