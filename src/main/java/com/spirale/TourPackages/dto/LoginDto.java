@@ -1,10 +1,15 @@
 package com.spirale.TourPackages.dto;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+
 public class LoginDto {
 	
 		
 		private String email;
 		private String password;
+		private Collection<? extends GrantedAuthority> role;
 		public LoginDto() {
 			
 		}
@@ -29,7 +34,13 @@ public class LoginDto {
 		public String toString() {
 			return "LoginDto [email=" + email + ", password=" + password + "]";
 		}
-
 		
+		public void setRole(Collection<? extends GrantedAuthority> role) {
+			this.role = role;
+		}
+
+		public Collection<? extends GrantedAuthority> getRole() {
+			return role;
+		}
 
 	}

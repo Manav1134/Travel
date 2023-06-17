@@ -76,7 +76,7 @@ public class CustomerController {
      public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginDto loginDto) throws Exception{
 		try {
 			
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword(),loginDto.getRole()));
 			
 		}catch(UsernameNotFoundException e)
 		{
