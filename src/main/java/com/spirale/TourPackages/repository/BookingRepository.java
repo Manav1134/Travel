@@ -10,8 +10,8 @@ import com.spirale.TourPackages.entity.Booking;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer>  {
 //update Booking set customerId=17,packageId=21 where bookingId=20
-	
-//   @Query(value="select pacakge_id,booking_id From Booking  Where booking_id= : n;",nativeQuery=true);
+////	
+////   @Query(value="select b.*, tp.* from booking b join travel_packages tp on b.pacakge_id = tp.package_id WHERE b.pacakge_id =:id ",nativeQuery=true);
 //  public Booking getPackageInfo(@Param("n") Integer pacakageId);
 
 }
