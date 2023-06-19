@@ -1,4 +1,4 @@
-package com.agency.controller;
+package com.agency.agency.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.agency.entity.Agency;
-import com.agency.response.ResponseObj;
-import com.agency.service.AgencyService;
+import com.agency.agency.entity.Agency;
+import com.agency.agency.response.ResponseObj;
+import com.agency.agency.service.AgencyService;
+import com.spirale.TourPackages.response.ResponseObject;
+
 
 @RestController
 

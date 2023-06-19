@@ -1,4 +1,4 @@
-package com.agency;
+package com.agency.agency;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

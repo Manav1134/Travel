@@ -1,4 +1,4 @@
-package com.agency.service;
+package com.agency.agency.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,15 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.agency.entity.Agency;
-import com.agency.entity.Transport;
-import com.agency.response.ResponseObj;
-import com.agency.respository.TransportRepository;
+import com.agency.agency.entity.Transport;
+import com.agency.agency.response.ResponseObj;
+import com.agency.agency.respository.TransportRepository;
+
+
 
 @Service
 public class TransportService {
 @Autowired
-      private com.agency.respository.TransportRepository transportRepository;
+      private TransportRepository transportRepository;
 	    public Transport createTransoport(Transport transport) {
 		return transportRepository.save(transport);
 		// TODO Auto-generated method stub	
